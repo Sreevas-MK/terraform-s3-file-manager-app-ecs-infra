@@ -1,0 +1,8 @@
+*.tfstate
+*.tfstate.backup
+*.swp
+*.swo
+*.pub
+s3-app-key
+.terraform
+.terraform.lock.hcl

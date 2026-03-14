@@ -1,0 +1,45 @@
+name: "Infrastructure Destroy (MANUAL ONLY)"
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_destroy:
+        description: "Type DESTROY to confirm infrastructure deletion"
+        required: true
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform-destroy:
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: "${{ vars.AWS_REGION }}"
+
+    steps:
+      - name: "Validate Destroy Confirmation"
+        run: |
+          if [ "${{ github.event.inputs.confirm_destroy }}" != "DESTROY" ]; then
+            echo "Destroy not confirmed. Exiting."
+            exit 1
+          fi
+
+      - name: "Checkout Code"
+        uses: actions/checkout@v4
+
+      - name: "Setup Terraform"
+        uses: hashicorp/setup-terraform@v3.1.2
+
+      - name: "Configure AWS via OIDC"
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/GitHubActionsWorkflowRole
+          role-session-name: github-actions-session
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: "Terraform Init & Destroy"
+        run: |
+          terraform init
+          terraform destroy -auto-approve
+
