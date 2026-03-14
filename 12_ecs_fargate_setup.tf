@@ -19,7 +19,7 @@ module "ecs" {
   }
 
   services = {
-    s3node-app = {
+    s3-node-app = {
       cpu           = 512  # per-task CPU
       memory        = 1024 # per-task memory
       desired_count = 2    # initial number of tasks

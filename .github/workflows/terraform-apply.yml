@@ -27,10 +27,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.S3_APP_CODE_REPO_ACCESS }} # Personal access token
         run: |
-          gh workflow run code-deploy.yml \
+          gh workflow run image_updater.yml \
             --repo ${{ vars.CODE_REPO_USERNAME }}/${{ vars.CODE_REPO }} \
-            --ref main \
-            --wait
+            --ref main
 
       - name: Checkout Code
         uses: actions/checkout@v4

@@ -6,7 +6,7 @@ terraform {
     }
     github = {
       # This fixes the warning you saw in 'terraform init'
-      source  = "integrations/github" 
+      source  = "integrations/github"
       version = "~> 6.0"
     }
   }

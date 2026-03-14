@@ -7,9 +7,13 @@ resource "aws_iam_policy" "github_ecr_policy" {
     Version = "2012-10-17"
     Statement = [
       {
+        Effect   = "Allow"
+        Action   = "ecr:GetAuthorizationToken"
+        Resource = "*"
+      },
+      {
         Effect = "Allow"
         Action = [
-          "ecr:GetAuthorizationToken",
           "ecr:BatchCheckLayerAvailability",
           "ecr:CompleteLayerUpload",
           "ecr:UploadLayerPart",

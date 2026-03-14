@@ -32,6 +32,7 @@ resource "aws_iam_policy" "github_actions_policy" {
         Action = [
           "ec2:*",
           "autoscaling:*",
+          "application-autoscaling:*",
           "elasticloadbalancing:*",
           "s3:*",
           "acm:*",
@@ -41,7 +42,8 @@ resource "aws_iam_policy" "github_actions_policy" {
           "codedeploy:*",
           "cloudfront:*",
           "ecr:*",
-          "ecs:*"
+          "ecs:*",
+          "wafv2:*"
         ]
         Resource = "*"
       },

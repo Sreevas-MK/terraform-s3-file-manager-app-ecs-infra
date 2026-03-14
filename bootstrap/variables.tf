@@ -13,7 +13,7 @@ variable "project_name" {
 variable "project_env" {
   description = "Project Environment"
   type        = string
-  default     = "Development"
+  default     = "development"
 }
 
 variable "terraform_state_bucket_name" {

@@ -25,13 +25,13 @@ variable "enable_nat_gw" {
 variable "project_name" {
   description = "Project name"
   type        = string
-  default     = "S3-node-app"
+  default     = "s3-node-app"
 }
 
 variable "project_env" {
   description = "Project Environment"
   type        = string
-  default     = "Development"
+  default     = "development"
 }
 
 variable "project_owner" {
